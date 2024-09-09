@@ -1201,9 +1201,11 @@ func TestBackendConfig_Authentication_AssumeRoleNested(t *testing.T) {
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+					},
 				},
 			},
 			ExpectedCredentialsValue: mockdata.MockStsAssumeRoleCredentials,
@@ -1216,9 +1218,11 @@ func TestBackendConfig_Authentication_AssumeRoleNested(t *testing.T) {
 		// WAS: "environment AWS_ACCESS_KEY_ID config AssumeRoleARN access key"
 		"from environment AWS_ACCESS_KEY_ID": {
 			config: map[string]any{
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+					},
 				},
 			},
 			EnvironmentVariables: map[string]string{
@@ -1319,9 +1323,11 @@ aws_secret_access_key = SharedConfigurationSourceSecretKey
 		// WAS: "shared credentials default aws_access_key_id config AssumeRoleARN access key"
 		"from default profile": {
 			config: map[string]any{
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+					},
 				},
 			},
 			ExpectedCredentialsValue: mockdata.MockStsAssumeRoleCredentials,
@@ -1339,9 +1345,11 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 		// WAS: "EC2 metadata access key config AssumeRoleARN access key"
 		"from EC2 metadata": {
 			config: map[string]any{
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+					},
 				},
 			},
 			EnableEc2MetadataServer:  true,
@@ -1355,9 +1363,11 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 		// WAS: "ECS credentials access key config AssumeRoleARN access key"
 		"from ECS credentials": {
 			config: map[string]any{
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+					},
 				},
 			},
 			EnableEcsCredentialsServer: true,
@@ -1373,10 +1383,12 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
-					"duration":     "1h",
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+						"duration":     "1h",
+					},
 				},
 			},
 			ExpectedCredentialsValue: mockdata.MockStsAssumeRoleCredentials,
@@ -1391,10 +1403,12 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
-					"external_id":  servicemocks.MockStsAssumeRoleExternalId,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+						"external_id":  servicemocks.MockStsAssumeRoleExternalId,
+					},
 				},
 			},
 			ExpectedCredentialsValue: mockdata.MockStsAssumeRoleCredentials,
@@ -1409,10 +1423,12 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
-					"policy":       mockStsAssumeRolePolicy,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+						"policy":       mockStsAssumeRolePolicy,
+					},
 				},
 			},
 			ExpectedCredentialsValue: mockdata.MockStsAssumeRoleCredentials,
@@ -1427,10 +1443,12 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
-					"policy_arns":  []any{servicemocks.MockStsAssumeRolePolicyArn},
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+						"policy_arns":  []any{servicemocks.MockStsAssumeRolePolicyArn},
+					},
 				},
 			},
 			ExpectedCredentialsValue: mockdata.MockStsAssumeRoleCredentials,
@@ -1445,11 +1463,13 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
-					"tags": map[string]any{
-						servicemocks.MockStsAssumeRoleTagKey: servicemocks.MockStsAssumeRoleTagValue,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+						"tags": map[string]any{
+							servicemocks.MockStsAssumeRoleTagKey: servicemocks.MockStsAssumeRoleTagValue,
+						},
 					},
 				},
 			},
@@ -1465,13 +1485,15 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
-					"tags": map[string]any{
-						servicemocks.MockStsAssumeRoleTagKey: servicemocks.MockStsAssumeRoleTagValue,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+						"tags": map[string]any{
+							servicemocks.MockStsAssumeRoleTagKey: servicemocks.MockStsAssumeRoleTagValue,
+						},
+						"transitive_tag_keys": []any{servicemocks.MockStsAssumeRoleTagKey},
 					},
-					"transitive_tag_keys": []any{servicemocks.MockStsAssumeRoleTagKey},
 				},
 			},
 			ExpectedCredentialsValue: mockdata.MockStsAssumeRoleCredentials,
@@ -1486,10 +1508,12 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":        servicemocks.MockStsAssumeRoleArn,
-					"session_name":    servicemocks.MockStsAssumeRoleSessionName,
-					"source_identity": servicemocks.MockStsAssumeRoleSourceIdentity,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":        servicemocks.MockStsAssumeRoleArn,
+						"session_name":    servicemocks.MockStsAssumeRoleSessionName,
+						"source_identity": servicemocks.MockStsAssumeRoleSourceIdentity,
+					},
 				},
 			},
 			ExpectedCredentialsValue: mockdata.MockStsAssumeRoleCredentials,
@@ -1504,9 +1528,11 @@ aws_secret_access_key = DefaultSharedCredentialsSecretKey
 			config: map[string]any{
 				"access_key": servicemocks.MockStaticAccessKey,
 				"secret_key": servicemocks.MockStaticSecretKey,
-				"assume_role": map[string]any{
-					"role_arn":     servicemocks.MockStsAssumeRoleArn,
-					"session_name": servicemocks.MockStsAssumeRoleSessionName,
+				"assume_role": []any{
+					map[string]any{
+						"role_arn":     servicemocks.MockStsAssumeRoleArn,
+						"session_name": servicemocks.MockStsAssumeRoleSessionName,
+					},
 				},
 			},
 			MockStsEndpoints: []*servicemocks.MockEndpoint{
