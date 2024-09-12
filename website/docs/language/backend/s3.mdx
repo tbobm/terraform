@@ -256,6 +256,8 @@ The argument `assume_role` contains the following arguments:
 * `tags` - (Optional) Map of assume role session tags.
 * `transitive_tag_keys` - (Optional) Set of assume role session tag keys to pass to any subsequent sessions.
 
+Multiple `assume_role` values can be specified, and the roles will be assumed in order.
+
 The following arguments on the top level are deprecated:
 
 * `assume_role_duration_seconds` - (Optional) Number of seconds to restrict the assume role session duration.
